@@ -43,6 +43,10 @@ var config = {
                     fallback: 'style-loader',
                     use: ['css-loader', 'sass-loader']
                 })
+            },
+            {
+                test: /\.jsx?$/,
+                use: 'babel-loader'
             }
         ]
     },
