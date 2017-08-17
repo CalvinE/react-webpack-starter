@@ -1,6 +1,8 @@
-const path = require("path");
+const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 let isProd = () => {
     let env = process.env.NODE_ENV;
@@ -69,6 +71,14 @@ var config = {
                             }
                         },
                         {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: () => {
+                                    return [autoprefixer({})];
+                                }
+                            }
+                        },
+                        {
                             loader: 'sass-loader',
                             options: {
                                 sourceMap: shouldGenerateSourceMaps(),
@@ -108,7 +118,14 @@ var config = {
     },
     plugins: [
         htmlWebpackPlugin,
-        extractSass
+        extractSass//,
+        // new webpack.LoaderOptionsPlugin({
+        //     options: {
+        //         postcss: [
+        //             autoprefixer()
+        //         ]
+        //     }
+        // })
     ]
 }
 
