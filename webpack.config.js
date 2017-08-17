@@ -10,6 +10,19 @@ let isProd = () => {
     return false;
 };
 
+let shouldGenerateSourceMaps = () => {
+    if(process.env.OVERRIDE_SOURCE_MAP === true){
+        return true;
+    } else if (!isProd() === true) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+console.log(`isProd = ${isProd()}`);
+console.log(`shouldGenerateSourceMaps = ${shouldGenerateSourceMaps()}`);
+
 let htmlMinifyOptions = isProd() ? {
     // Add minify options here: https://github.com/kangax/html-minifier#options-quick-reference
     collapseWhitespace: true
@@ -23,9 +36,16 @@ let htmlWebpackPlugin = new HtmlWebpackPlugin({
     hash: true
 });
 
+let extractSass = new ExtractTextPlugin({
+    filename: "css/[name].[contenthash].css",
+    disable: !isProd(),
+    allChunks: true
+});
+
 // let scssExtractTextPlugin = ;
 
 var config = {
+    devtool: 'source-map',
     context: path.resolve(__dirname, "src"),
     entry: {
         app: "./app.js"
@@ -39,9 +59,23 @@ var config = {
         rules: [
             { // SASS loader
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
+                use: extractSass.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
+                    use: [
+                        { 
+                            loader: 'css-loader', 
+                            options: {
+                                sourceMap: shouldGenerateSourceMaps()
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: shouldGenerateSourceMaps(),
+                                outputStyle: 'compressed'
+                            }
+                        }
+                    ]
                 })
             },
             {
@@ -74,11 +108,7 @@ var config = {
     },
     plugins: [
         htmlWebpackPlugin,
-        new ExtractTextPlugin({
-            filename: 'css/[name].bundle.css',
-            disable: !isProd(),
-            allChunks: true
-        })
+        extractSass
     ]
 }
 
