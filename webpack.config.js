@@ -74,7 +74,11 @@ var config = {
                             loader: 'postcss-loader',
                             options: {
                                 plugins: () => {
-                                    return [autoprefixer({})];
+                                    return [
+                                        autoprefixer({
+                                            // Options go here...
+                                        })
+                                    ];
                                 }
                             }
                         },
