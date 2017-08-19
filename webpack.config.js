@@ -13,7 +13,7 @@ let isProd = () => {
 };
 
 let shouldGenerateSourceMaps = () => {
-    if(process.env.OVERRIDE_SOURCE_MAP === true){
+    if(process.env.OVERRIDE_SOURCE_MAP === "true"){
         return true;
     } else if (!isProd() === true) {
         return true;
@@ -73,6 +73,7 @@ var config = {
                         {
                             loader: 'postcss-loader',
                             options: {
+                                sourceMap: shouldGenerateSourceMaps(),
                                 plugins: () => {
                                     return [
                                         autoprefixer({

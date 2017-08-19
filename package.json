@@ -8,7 +8,8 @@
     "dev": "NODE_ENV=DEV webpack-dev-server",
     "prod": "NODE_ENV=PROD webpack-dev-server",
     "build:dev": "NODE_ENV=dev webpack",
-    "build:prod": "NODE_ENV=PROD webpack -p"
+    "build:prod": "NODE_ENV=PROD webpack -p",
+    "build:prodsm": "OVERRIDE_SOURCE_MAP=true NODE_ENV=prod webpack -p"
   },
   "repository": {
     "type": "git",
