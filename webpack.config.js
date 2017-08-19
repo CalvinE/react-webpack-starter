@@ -95,7 +95,11 @@ var config = {
             },
             {
                 test: /\.jsx?$/,
-                use: 'babel-loader'
+                use: [
+                    {
+                        loader: 'babel-loader'
+                    }
+                ]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
