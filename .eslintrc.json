@@ -4,6 +4,10 @@
         "indent": ["error", "tab"],
         "no-tabs": "off",
         "react/jsx-indent": ["error", "tab"],
-        "jsx-a11y/img-redundant-alt": "off"
+        "jsx-a11y/img-redundant-alt": "off",
+        "jsx-a11y/label-has-for": "off",
+        "react/jsx-indent-props": ["error", "tab"],
+        "react/require-default-props": "off",
+        "comma-dangle": "off"
     }
 }
