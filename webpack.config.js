@@ -13,13 +13,14 @@ let isProd = () => {
 };
 
 let shouldGenerateSourceMaps = () => {
-    if(process.env.OVERRIDE_SOURCE_MAP === "true"){
-        return true;
-    } else if (!isProd() === true) {
-        return true;
-    } else {
-        return false;
-    }
+    return true; // Why not always generate them?
+    // if(process.env.OVERRIDE_SOURCE_MAP === "true"){
+    //     return true;
+    // } else if (!isProd() === true) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
 };
 
 console.log(`isProd = ${isProd()}`);
@@ -47,10 +48,10 @@ let extractSass = new ExtractTextPlugin({
 // let scssExtractTextPlugin = ;
 
 var config = {
-    devtool: 'source-map',
+    devtool: isProd() ? 'source-map' : 'inline-source-map',
     context: path.resolve(__dirname, "src"),
     entry: {
-        app: "./app.js"
+        app: "./app.jsx"
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -94,10 +95,20 @@ var config = {
                 })
             },
             {
-                test: /\.jsx?$/,
+                test: /\.tsx$/,
+                use: [
+
+                ]
+            },
+            {
+                test: /\.jsx$/,
+                exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'babel-loader'
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['es2015', 'react']
+                        }
                     }
                 ]
             },
@@ -127,7 +138,10 @@ var config = {
     },
     plugins: [
         htmlWebpackPlugin,
-        extractSass//,
+        extractSass,
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true
+        })//,
         // new webpack.LoaderOptionsPlugin({
         //     options: {
         //         postcss: [
