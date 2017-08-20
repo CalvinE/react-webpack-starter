@@ -5,7 +5,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CheckboxWithLabel from './CheckboxWithLabel';
 
-describe('', () => {
+describe('CheckboxWithLabel component tests.', () => {
 	it('Component should have on and off labels that are switched based on state.', () => {
 		const checkbox = shallow(
 			<CheckboxWithLabel labelOn="On" labelOff="Off" />
