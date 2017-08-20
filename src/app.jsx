@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import CheckboxWithLabel from './js/components/CheckboxWithLabel/CheckboxWithLabel.jsx';
+import CheckboxWithLabel from './js/components/CheckboxWithLabel/CheckboxWithLabel';
 
 import defaultImage from './images/default.png';
 

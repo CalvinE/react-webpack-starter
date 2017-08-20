@@ -50,6 +50,14 @@ const config = {
 	entry: {
 		app: './app.jsx',
 	},
+	resolve: {
+		extensions: [
+			'.js',
+			'.jsx',
+			'.ts',
+			'.tsx'
+		]
+	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'js/[name].bundle.js',
