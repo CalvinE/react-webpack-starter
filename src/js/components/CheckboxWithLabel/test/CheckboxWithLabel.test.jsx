@@ -1,9 +1,8 @@
 /* global describe, it */
-
 import * as Chai from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
-import CheckboxWithLabel from '../CheckboxWithLabel';
+import CheckboxWithLabel from '../CheckboxWithLabel.jsx';
 
 describe('CheckboxWithLabel component tests.', () => {
 	it('Component should have on and off labels that are switched based on state.', () => {
