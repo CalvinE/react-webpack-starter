@@ -19,7 +19,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       {
-        pattern: '**/*.test.jsx'
+        pattern: '**/*.test.js'
       }
     ],
 
@@ -32,7 +32,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.test.jsx': ['webpack', 'sourcemap']
+      '**/*.test.js': ['webpack', 'sourcemap']
     },
 
     webpack: {
@@ -40,7 +40,7 @@ module.exports = function(config) {
       module: {
         rules: [
           {
-            test: /\.jsx$/,
+            test: /\.js$/,
             exclude: /node_modules/,
             use: [
               {

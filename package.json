@@ -6,7 +6,7 @@
   "scripts": {
     "test": "karma start karma.mac.conf.js --single-run",
     "test:karma": "karma start karma.mac.conf.js",
-    "coverage": "NODE_ENV=test nyc mocha **/*.test.jsx --compilers js:babel-core/register --recursive",
+    "coverage": "NODE_ENV=test nyc mocha **/*.test.js --compilers js:babel-core/register --recursive",
     "dev": "NODE_ENV=DEV webpack-dev-server",
     "prod": "NODE_ENV=PROD webpack-dev-server",
     "build:dev": "NODE_ENV=dev webpack",
