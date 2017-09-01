@@ -33,6 +33,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 	title: `${process.env.APPNAME}`,
 	template: './templates/index.ejs',
 	minify: htmlMinifyOptions,
+	chunks: ['index'],
 	hash: true,
 });
 
@@ -48,14 +49,11 @@ const config = {
 	devtool: isProd() ? 'source-map' : 'inline-source-map',
 	context: path.resolve(__dirname, 'src'),
 	entry: {
-		app: './app.jsx',
+		index: './index.js',
 	},
 	resolve: {
 		extensions: [
-			'.js',
-			'.jsx',
-			'.ts',
-			'.tsx'
+			'.js'
 		]
 	},
 	output: {
@@ -98,19 +96,13 @@ const config = {
 				}),
 			},
 			{
-				test: /\.tsx$/,
-				use: [
-
-				],
-			},
-			{
-				test: /\.jsx$/,
+				test: /\.js$/,
 				exclude: /node_modules/,
 				use: [
 					{
 						loader: 'babel-loader',
 						options: {
-							presets: ['es2015', 'react'],
+							presets: ['es2015'],
 						},
 					},
 				],
